@@ -1,0 +1,15 @@
+.exercise-layout {
+  padding: 2rem;
+
+  .back-btn {
+    padding: 1rem;
+    background-color: rgb(255, 230, 183);
+    border: none;
+    border-radius: 12px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(255, 243, 220);
+    }
+  }
+}

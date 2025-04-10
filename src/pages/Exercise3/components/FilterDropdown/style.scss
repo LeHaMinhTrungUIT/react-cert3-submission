@@ -1,0 +1,37 @@
+.filter-dropdown {
+  position: relative;
+
+  .text-input {
+    padding: 10px;
+    width: 20rem;
+  }
+  .text-input:focus {
+    border: solid 2px #000;
+  }
+
+  .options-container {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    padding: 10px;
+    width: 20rem;
+    overflow: auto;
+    z-index: 2;
+    background-color: #fff;
+    border: solid 1px #b0b0b0;
+    box-shadow: 5px 5px 10px gray;
+
+    .option {
+      cursor: pointer;
+      padding: 10px;
+
+      b {
+        font-weight: bolder;
+      }
+    }
+
+    .option:hover {
+      background-color: #e6e6e6;
+    }
+  }
+}
