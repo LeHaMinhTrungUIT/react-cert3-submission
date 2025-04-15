@@ -1,4 +1,3 @@
-// src/SetterComponent.tsx
 import React, { useState } from "react";
 import { setValue } from "../../../../utils/localStorage";
 

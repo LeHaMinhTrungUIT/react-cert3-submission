@@ -14,7 +14,7 @@ const Example2 = ({ data }: any) => {
         data={data}
         fieldPath="address.city"
         valueChange={onSelect}
-        placeholder="Search name"
+        placeholder="Search address.city"
       />
     </div>
   );

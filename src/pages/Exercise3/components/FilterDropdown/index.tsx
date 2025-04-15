@@ -16,7 +16,6 @@ const FilterDropdown = ({
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
   const [isVisibleOptions, setIsVisibleOptions] = useState<boolean>(false);
-
   const getValueByPath = (obj: any, path: string) => {
     return path.split(".").reduce((acc, key) => acc?.[key], obj) ?? "";
   };
@@ -26,12 +25,8 @@ const FilterDropdown = ({
     setIsVisibleOptions(value ? true : false);
     setFilteredOptions(
       data
-        .filter((d: any) =>
-          getValueByPath(d, fieldPath)
-            .toLowerCase()
-            .includes(value.toLowerCase())
-        )
         .map((d) => getValueByPath(d, fieldPath))
+        .filter((d: any) => d.toLowerCase().includes(value.toLowerCase()))
     );
   };
 
@@ -66,7 +61,10 @@ const FilterDropdown = ({
   };
 
   useEffect(() => {
-    setFilteredOptions(data.map((d) => getValueByPath(d, fieldPath)));
+    data.length > 0 &&
+      setFilteredOptions(
+        data.map((d) => getValueByPath(d, fieldPath)).filter((d) => d)
+      );
   }, [data, fieldPath]);
 
   return (
@@ -81,11 +79,11 @@ const FilterDropdown = ({
       {isVisibleOptions && (
         <div className="options-container">
           {filteredOptions.length > 0 ? (
-            filteredOptions.map((opt: string) => (
+            filteredOptions.map((opt: string, index: number) => (
               <div
                 onClick={() => onSelectOption(opt)}
                 className="option"
-                key={opt}
+                key={`${opt}-${index}`}
               >
                 {renderOptionText(opt)}
               </div>

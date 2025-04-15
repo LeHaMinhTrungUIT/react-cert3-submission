@@ -1,6 +1,6 @@
 export const setValue = (key: string, value: string) => {
   const oldValue = getValue(key);
-  localStorage.setItem(key, JSON.stringify(value));
+  localStorage.setItem(key, value);
 
   const event = new StorageEvent("storage", {
     key,
@@ -13,7 +13,7 @@ export const setValue = (key: string, value: string) => {
 };
 
 export const getValue = (key: string) =>
-  key in localStorage ? JSON.parse(localStorage.getItem(key) || "") : "";
+  key in localStorage ? localStorage.getItem(key) : "";
 
 export const getAllStorageItem = () => {
   let storageList = [];

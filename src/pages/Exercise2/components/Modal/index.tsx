@@ -48,7 +48,7 @@ const Modal = (props: IModalProps) => {
         src={CLOSE_ICON}
         alt="close-icon"
         className="close-icon"
-        onClick={() => onCloseModal()}
+        onClick={onCloseModal}
       />
     );
 
@@ -59,10 +59,10 @@ const Modal = (props: IModalProps) => {
       <></>
     ) : (
       <>
-        <button onClick={() => onClickCancel()} className="action-btn">
+        <button onClick={onClickCancel} className="action-btn">
           {cancelText}
         </button>
-        <button onClick={() => onClickOk()} className="action-btn">
+        <button onClick={onClickOk} className="action-btn">
           {okText}
         </button>
       </>
@@ -86,6 +86,9 @@ const Modal = (props: IModalProps) => {
             maskType === MASK_TYPE.NONE ? "interaction-outside" : ""
           }`}
         >
+          {maskType !== MASK_TYPE.NONE && (
+            <div className="modal-overlay" onClick={onClickMask}></div>
+          )}
           <div
             className={`modal ${className}`}
             onClick={(e) => e.stopPropagation()}
@@ -95,9 +98,6 @@ const Modal = (props: IModalProps) => {
             <div className="children">{children}</div>
             <div className="footer">{renderFooter()}</div>
           </div>
-          {maskType !== MASK_TYPE.NONE && (
-            <div className="modal-overlay" onClick={() => onClickMask()}></div>
-          )}
         </div>
       )}
     </>
